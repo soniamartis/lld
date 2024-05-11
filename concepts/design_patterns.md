@@ -131,7 +131,6 @@ class PositionScenarioLoader implements PositionsLoader{
 
     loadPositions(PositionsSource source){}
 }
-...
 
 class CompositeLoader implements PositionsLoader{
 
