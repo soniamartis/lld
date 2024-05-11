@@ -103,8 +103,11 @@ class CompositeLoader implements PositionsLoader{
   }
    
 }
+```
 
 Another similar approach but not using switches:
+
+```
 
 interface PositionsLoader{
     List<Position> loadPositions(PositionSource source);
