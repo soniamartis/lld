@@ -71,6 +71,83 @@ class PrinterAdapter implements Printer{
 }
 
 ```
+
+## Resolving data based on an input using a consistent interface(not too many additional classes)
+
+```
+interface PositionsLoader{
+    List<Position> loadPositions(PositionSource source);
+}
+
+class PositionsRefLoader implements PositionsLoader{
+    loadPositions(PositionsSource source);
+}
+
+class PositionScenarioLoader implements PositionsLoader{
+    loadPositions(PositionsSource source);
+}
+...
+
+class CompositeLoader implements PositionsLoader{
+
+  PositionsRefLoader refLoader;
+
+  PositionScenarioLoader scenarioLoader;
+
+   List<Position> loadPositions(PositionsSource source){
+    switch(source.getSourceType()){
+      case ETF_POSITIONS_REF -> refLoader.loadPositions();
+      case POSITION_SCENARIO -> scenarioLoader.loadPositions();
+      ...
+    }
+  }
+   
+}
+
+Another similar approach but not using switches:
+
+interface PositionsLoader{
+    List<Position> loadPositions(PositionSource source);
+    boolean isEligible(PositionSource source);
+}
+
+class PositionsRefLoader implements PositionsLoader{
+
+   boolean isEligible(PositionSource source){
+      return source.getType() == ETF_POSITIONS_REF;
+    }
+
+    loadPositions(PositionsSource source){}
+}
+
+class PositionScenarioLoader implements PositionsLoader{
+
+    boolean isEligible(PositionSource source){
+      return source.getType() == POSITION_SCENARIO;
+    }
+
+    loadPositions(PositionsSource source){}
+}
+...
+
+class CompositeLoader implements PositionsLoader{
+
+  PositionsRefLoader refLoader;
+
+  PositionScenarioLoader scenarioLoader;
+
+  List<PositionLoader> loaders = List.of(refLoader, scenarioLoader);
+
+   List<Position> loadPositions(PositionsSource source){
+    PositionLoader eligibleLoader = loaders.filter(loader::isEligible).findFirst().orElse(() -> Exception);
+    return eligibleLoader.loadPositions();
+  }
+   
+}
+
+
+```
+
   
 
   
