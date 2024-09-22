@@ -7,7 +7,7 @@
 
 In below scenario, if we directly call realImge, it will always keep reading from disk, so we build a proxy on top of it, so that we load from disk only when its called the first time, later on, we will just have a reference to the image via its proxy.
 
-```
+```java
 interface Image{
   void display();
 }
@@ -49,7 +49,7 @@ class ProxyImage implements Image {
 - A good example of the application of adapter pattern, is to build a wrapper around third party libraries, so that the client code does not depend directly on the library, rather on the adapter that wraps over the lib
 - eg: etfdetails service client on top of etfdetails client
 
-```
+```java
 // third party lib code
 class LegacyPrinter{
 
@@ -74,7 +74,7 @@ class PrinterAdapter implements Printer{
 
 ## Resolving data based on an input using a consistent interface(not too many additional classes)
 
-```
+```java
 interface PositionsLoader{
     List<Position> loadPositions(PositionSource source);
 }
@@ -107,7 +107,7 @@ class CompositeLoader implements PositionsLoader{
 
 Another similar approach but not using switches:
 
-```
+```java
 
 interface PositionsLoader{
     List<Position> loadPositions(PositionSource source);
@@ -154,7 +154,7 @@ class CompositeLoader implements PositionsLoader{
 - Use concept of a context that can be updated by several transfomers
 - eg:Used in open api generation, where we require multiple transformations to the input file
 
-```
+```java
 interface OpenApiTransfomer{
    TransformerContext transform(TransformerContext ctx);
 }
@@ -189,7 +189,7 @@ class TransformerChain implements OpenApiTransfomer{
 - Passing around a mutable object and modifying its state can have implications that may be hard to debug
 - Instead define an Input and Output for each task and use the output of a task for generating the input of the next task
 
-```
+```java
 class Task1{
   public record Input(int x, int y){}
 
@@ -220,6 +220,39 @@ class Task2{
 
 ```
 
-  
+## Registry pattern
+
+```java
+
+class ValidationRegistry {
+
+    List<ValidationDefinition> validationDefinitions;
+
+    void register(ValidationDefinition definition){
+       validationDefinitions.add(definition);
+    }
+
+    List<ValidationDefinition> getDefinitions(){
+      return Collections.unmodifiableList(validationDefinitions);
+    }
+}
+
+//interface to register definitions
+
+interface ValidationDefinitionBinder{
+  void bindTo(ValidationRegistry registry);
+}
+
+class ValidatorA implements ValidationDefinitionBinder{
+
+   void bindTo(ValidationRegistry registry){
+    List<ValidationDefinition> defs = List.of(...);
+    defaultDefs.forEach(registry::add);
+  }
+}
+
+
+```
+
 
   
