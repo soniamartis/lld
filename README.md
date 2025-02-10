@@ -10,3 +10,8 @@
 
  ## Resources
  - https://github.com/ashishps1/awesome-low-level-design/tree/main/problems
+
+
+ ### Gaming
+ - Design board with co-ordinates
+ - Game loop -> just a while(true) loop to iterate over the players
