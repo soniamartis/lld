@@ -8,6 +8,7 @@
 In below scenario, if we directly call realImge, it will always keep reading from disk, so we build a proxy on top of it, so that we load from disk only when its called the first time, later on, we will just have a reference to the image via its proxy.
 
 ```java
+// Eg1:
 interface Image{
   void display();
 }
@@ -41,6 +42,25 @@ class ProxyImage implements Image {
   }
  
 }
+```
+
+```java
+// Eg2: suppose we are unable to add methods to this class, as it is part of external library/ generated pojo
+
+class Instrument {
+  identifiers: Map<String, String>
+}
+
+// we can create a wrapper on top of it and write methods to get the attrs we are interested in
+class Security {
+  Instrument instrument;
+
+  String getSedol(){
+    instrument.getIdentifiers().get("sedol");
+  }
+  
+}
+
 ```
 ## Adapter Pattern
 - Proxy : object :: adapter : interface
