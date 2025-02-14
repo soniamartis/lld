@@ -28,6 +28,13 @@
 - In reality a user can book several entities, eg user books n rooms, or user books n seats in movie/ flight booking
 
 
+### Machines
+- Sample problems
+  - Elevator
+  - ATM
+  - Vending machine
+
+
 ### Important questions
 - SSE imp questions
 - Splitwise; Concurrent logger system; Battleship game; multi-directory file system with read-write permissions; circuit breaker; Task Scheduler; Concurrent LRU Cache and some more.
