@@ -7,7 +7,7 @@
 - Machines
 - Ride hailing apps
 - Chat and Video systems
-- data structure design
+- data structure designs
 
  ## Resources
  - https://github.com/ashishps1/awesome-low-level-design/tree/main/problems
@@ -42,7 +42,7 @@
 - Bookings/ reservations require some uniqueid generations, where we can use several methods like UUID.randomUUID() or prefix + Intant.now() + atomicInteger.incrementAndGet()
 
 
-### Ride hailng apps observations
+### Ride hailing / food delivery apps observations
 - Create location class with x and y axis
 - Distance between 2 points : sqrt((x1-x2)^2 + (y1-y2)^2)
 - Payment modes
@@ -61,6 +61,18 @@
 
 ### Chain of responsibility
 - Logging framework
+
+### Social networking
+- linkedIn
+- FB
+
+### Online shopping
+
+
+### Financial
+- splitwise
+- stock broker
+  
 
   
 
