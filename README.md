@@ -14,10 +14,11 @@
 
 
  ### Gaming observations
- - Design board with objects that should be present on the board. eg: for snakes and ladders board, the board contains list of snakes and ladders
- - Game loop -> just a while(true) loop to iterate over the players
+ - Some common features of these games are : board, gameLoop, players, player objects
+ - Design board with objects that should be present on the board. eg: for snakes and ladders board, the board contains list of snakes and ladders as well as methods like making a move, check for winner, stalemate on board
+ - Game loop -> just a while(true) loop to iterate over the players. Will iterate over players and call board's makemove, will check for board's winner/ stalemate and continue with loop
  - Player selection in game loop -> add all players to list and index + 1 % listSize to get  next player
- - Determine criteria that will tell if game is over along with winner / tie
+ - If only 2 players, then switch player with if currentplayer == player1 ? player2 : player1
  - making moves -> use simple scanner operations
  - Sample Problems
    - Snake and Ladder
