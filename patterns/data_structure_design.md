@@ -47,3 +47,6 @@ public void changeRating(String food, int newRating) {
 
 ```
 
+### TreeMap
+- To retrieve a key that is greatest but less than or equal to the given key, use treemap.floorKey(input_key)
+
